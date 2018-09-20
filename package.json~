@@ -1,0 +1,11 @@
+{
+  "name": "woocommerce_pushketing-integration",
+  "title": "WooCommerce Pushketing Integration",
+  "version": "1.0.0",
+  "license": "GPL-2.0",
+  "homepage": "https://pushketing.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/woocommerce/woocommerce_pushketing-integration.git"
+  }
+}
