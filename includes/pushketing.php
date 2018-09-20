@@ -146,7 +146,7 @@ class WC_Pushketing extends WC_Integration {
 
         if ($order->get_items()) {
             foreach ($order->getItems() as $item) {
-                $productsIds = $item->get_sku() ? $item->get_sku : $item->get_id();
+                $productsIds[] = $item->get_sku() ? $item->get_sku : $item->get_id();
             }
         }
 
@@ -176,19 +176,17 @@ class WC_Pushketing extends WC_Integration {
             return;
         }
 
-        $this->postTag('wo_add_to_cart', $product_id,  $_COOKIE['user']);
+        $this->postTag('wo_add_to_cart', [$product_id],  $_COOKIE['user']);
     }
 
     /**
      * Tracking remove from cart.
      */
-    public function remove_from_cart() {
-        ob_start();
+    public function remove_from_cart($cart_item_key, $cart) {
 
-        $cart_item_key = wc_clean( $_POST['cart_item_key'] );
+        $productId = $cart->cart_contents[ $cart_item_key ]['product_id'];
 
-
-        $this->postTag('wo_remove_from_cart', $productId,  $_COOKIE['user']);
+        $this->postTag('wo_remove_from_cart', [$productId],  $_COOKIE['user']);
     }
 
 
@@ -198,7 +196,7 @@ class WC_Pushketing extends WC_Integration {
     public function product_detail() {
         global $product;
         $productId = $product->get_sku() ? $product->get_sku() : $product->get_id();
-        $this->postTag('wo_view_detail', $productId,  $_COOKIE['user']);
+        $this->postTag('wo_view_detail', [$productId],  $_COOKIE['user']);
     }
     /**
      * Client POST API request sending tag (keyword=value) about specific customer.
