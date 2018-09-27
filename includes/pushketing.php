@@ -14,7 +14,7 @@ class WC_Pushketing extends WC_Integration {
     /**
      * endpoint api for pushketing tag.
      */
-    const END_POINT = 'https://www.pushketing.com/api';
+    const END_POINT = 'https://www.pushketing.com/api/tag';
 
 	/**
 	 * Init and hook in the integration.
